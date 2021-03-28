@@ -23,14 +23,18 @@ package recipes_service.tsae.data_structures;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
 import edu.uoc.dpcs.lsim.logger.LoggerManager.Level;
 import lsim.library.api.LSimLogger;
+import recipes_service.data.Operation;
 
 /**
  * @author Joan-Manuel Marques
@@ -102,9 +106,11 @@ public class TimestampVector implements Serializable{
 	 * clone
 	 */
 	public TimestampVector clone(){
-		
-		// return generated automatically. Remove it when implementing your solution 
-		return null;
+		List<String> arrayListParticipants = new ArrayList<String>();
+		List<String> participantsSynched = Collections.synchronizedList(arrayListParticipants);
+		TimestampVector clonedTimestampVector = new TimestampVector(participantsSynched);
+		clonedTimestampVector.timestampVector.putAll(timestampVector);
+		return clonedTimestampVector;
 	}
 	
 	/**
