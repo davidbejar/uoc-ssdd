@@ -79,8 +79,8 @@ public class TimestampVector implements Serializable{
 	 * @param tsVector (a timestamp vector)
 	 */
 	public void updateMax(TimestampVector tsVector){
-		for (Iterator<String> pids = timestampVector.keys().asIterator(); pids.hasNext();) {
-			String pid = pids.next();
+		for (Enumeration<String> pids = timestampVector.keys(); pids.hasMoreElements();) {
+			String pid = pids.nextElement();
 			if (!tsVector.getLast(pid).isNullTimestamp())
 				if (getLast(pid).isNullTimestamp() || getLast(pid).compare(tsVector.getLast(pid)) < 0) {
 					timestampVector.replace(pid, getLast(pid), tsVector.getLast(pid));
@@ -105,8 +105,8 @@ public class TimestampVector implements Serializable{
 	 *  @param tsVector (timestamp vector)
 	 */
 	public void mergeMin(TimestampVector tsVector){
-		for (Iterator<String> pids = timestampVector.keys().asIterator(); pids.hasNext();) {
-			String pid = pids.next();
+		for (Enumeration<String> pids = timestampVector.keys(); pids.hasMoreElements();) {
+			String pid = pids.nextElement();
 			if (getLast(pid).compare(tsVector.getLast(pid)) > 0) {
 				timestampVector.put(pid, tsVector.getLast(pid));
 			}

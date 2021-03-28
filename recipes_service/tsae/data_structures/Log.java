@@ -97,8 +97,8 @@ public class Log implements Serializable{
 	public List<Operation> listNewer(TimestampVector sum){
 		List<Operation> arrayListOperations = new ArrayList<Operation>();
 		List<Operation> newerOperationsSynched = Collections.synchronizedList(arrayListOperations);
-		for (Iterator<String> logKeys = log.keys().asIterator(); logKeys.hasNext();) {
-			String hostId = logKeys.next();
+		for (Enumeration<String> logKeys = log.keys(); logKeys.hasMoreElements();) {
+			String hostId = logKeys.nextElement();
 			List<Operation> operations = log.get(hostId);
 			if (!operations.isEmpty()) {
 				int numOperations = operations.size();
