@@ -100,6 +100,12 @@ public class TimestampVector implements Serializable{
 	 *  @param tsVector (timestamp vector)
 	 */
 	public void mergeMin(TimestampVector tsVector){
+		for (Iterator<String> pids = timestampVector.keys().asIterator(); pids.hasNext();) {
+			String pid = pids.next();
+			if (getLast(pid).compare(tsVector.getLast(pid)) > 0) {
+				timestampVector.put(pid, tsVector.getLast(pid));
+			}
+		}
 	}
 	
 	/**
