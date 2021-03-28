@@ -25,8 +25,11 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
+//import java.util.concurrent.ConcurrentHashMap.Node;
+//import java.util.concurrent.ConcurrentHashMap.Traverser;
 
 import recipes_service.data.Operation;
 //LSim logging system imports sgeag@2017
@@ -107,8 +110,11 @@ public class Log implements Serializable{
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		
-		// return generated automatically. Remove it when implementing your solution 
+		if (obj == this) {
+			return true;
+		} else if (obj instanceof Log) {
+			return this.log.equals(((Log) obj).log);
+		}
 		return false;
 	}
 
