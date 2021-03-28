@@ -97,7 +97,7 @@ public class TimestampMatrix implements Serializable{
 	@Override
 	public boolean equals(Object obj) {
 
-		// return generated automatically. Remove it when implementing your solution 
+		// return generated automatically. Remove it when implementing your solution
 		return false;
 	}
 
