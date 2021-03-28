@@ -70,8 +70,8 @@ public class TimestampVector implements Serializable{
 	 */
 	public void updateTimestamp(Timestamp timestamp){
 		LSimLogger.log(Level.TRACE, "Updating the TimestampVectorInserting with the timestamp: "+timestamp);
-
-		// ...
+		String hostId = timestamp.getHostid();
+		timestampVector.replace(hostId, timestampVector.get(hostId), timestamp);
 	}
 	
 	/**
