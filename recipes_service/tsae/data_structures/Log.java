@@ -102,8 +102,8 @@ public class Log implements Serializable{
 			String hostId = logKeys.next();
 			List<Operation> operations = log.get(hostId);
 			if (!operations.isEmpty()) {
-				Iterator<Operation> iteratorOperations = operations.iterator();
-				Timestamp lastTimestamp = operations.get(operations.size() - 1).getTimestamp();
+				int numOperations = operations.size();
+				Timestamp lastTimestamp = operations.get(numOperations - 1).getTimestamp();
 				if (lastTimestamp.compare(sum.getLast(hostId)) > 0) {
 					if (sum.getLast(hostId).isNullTimestamp()) {
 						newerOperationsSynched.addAll(operations);
