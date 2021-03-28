@@ -78,9 +78,12 @@ public class Log implements Serializable{
 	 * @return true if op is inserted, false otherwise.
 	 */
 	public boolean add(Operation op){
-		// ....
-		
-		// return generated automatically. Remove it when implementing your solution 
+		String hostId = op.getTimestamp().getHostid();
+		List<Operation> operations = log.get(hostId);
+		int numOperations = operations.size();
+		if (operations.isEmpty() || operations.get(numOperations - 1).getTimestamp().compare(op.getTimestamp()) < 0) {
+			return operations.add(op);
+		}
 		return false;
 	}
 	
