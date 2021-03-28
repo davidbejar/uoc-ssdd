@@ -79,6 +79,13 @@ public class TimestampVector implements Serializable{
 	 * @param tsVector (a timestamp vector)
 	 */
 	public void updateMax(TimestampVector tsVector){
+		for (Iterator<String> pids = timestampVector.keys().asIterator(); pids.hasNext();) {
+			String pid = pids.next();
+			if (!tsVector.getLast(pid).isNullTimestamp())
+				if (getLast(pid).isNullTimestamp() || getLast(pid).compare(tsVector.getLast(pid)) < 0) {
+					timestampVector.replace(pid, getLast(pid), tsVector.getLast(pid));
+				}
+		}
 	}
 	
 	/**
