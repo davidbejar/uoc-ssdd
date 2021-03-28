@@ -111,8 +111,11 @@ public class TimestampVector implements Serializable{
 	 * equals
 	 */
 	public boolean equals(Object obj){
-		
-		// return generated automatically. Remove it when implementing your solution 
+		if (obj == this) {
+			return true;
+		} else if (obj instanceof TimestampVector) {
+			return timestampVector.equals(((TimestampVector) obj).timestampVector);
+		}
 		return false;
 	}
 
